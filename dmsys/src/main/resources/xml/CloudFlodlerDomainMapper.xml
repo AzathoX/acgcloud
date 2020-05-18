@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.acgcloud.dmsys.mapper.CloudFlodlerDomainMapper">
+  <resultMap id="BaseResultMap" type="org.acgcloud.dmsys.model.CloudFlodlerDomain">
+    <!--@mbg.generated-->
+    <!--@Table tb_cloud_flodler-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="prartition_id" jdbcType="BIGINT" property="prartitionId" />
+    <result column="filesys" jdbcType="VARCHAR" property="filesys" />
+    <result column="catalog_id" jdbcType="BIGINT" property="catalogId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="isfile" jdbcType="BOOLEAN" property="isfile" />
+    <result column="suffix" jdbcType="CHAR" property="suffix" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="hash_name" jdbcType="CHAR" property="hashName" />
+    <result column="vp_size" jdbcType="DOUBLE" property="vpSize" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="is_del" jdbcType="BIGINT" property="isDel" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, prartition_id, filesys, catalog_id, parent_id, isfile, suffix, `name`, hash_name, 
+    vp_size, remark, remark1, remark2, is_del, create_time, modified_time
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update tb_cloud_flodler
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="prartition_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.prartitionId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="filesys = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.filesys,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="catalog_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.catalogId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="parent_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.parentId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="isfile = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isfile,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="suffix = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.suffix,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="hash_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.hashName,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="vp_size = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.vpSize,jdbcType=DOUBLE}
+        </foreach>
+      </trim>
+      <trim prefix="remark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark1 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark1,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark2 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark2,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_del = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isDel,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="modified_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.modifiedTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_cloud_flodler
+    (prartition_id, filesys, catalog_id, parent_id, isfile, suffix, `name`, hash_name, 
+      vp_size, remark, remark1, remark2, is_del, create_time, modified_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.prartitionId,jdbcType=BIGINT}, #{item.filesys,jdbcType=VARCHAR}, #{item.catalogId,jdbcType=BIGINT}, 
+        #{item.parentId,jdbcType=BIGINT}, #{item.isfile,jdbcType=BOOLEAN}, #{item.suffix,jdbcType=CHAR}, 
+        #{item.name,jdbcType=CHAR}, #{item.hashName,jdbcType=CHAR}, #{item.vpSize,jdbcType=DOUBLE}, 
+        #{item.remark,jdbcType=VARCHAR}, #{item.remark1,jdbcType=VARCHAR}, #{item.remark2,jdbcType=VARCHAR}, 
+        #{item.isDel,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.modifiedTime,jdbcType=TIMESTAMP}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="org.acgcloud.dmsys.model.CloudFlodlerDomain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_cloud_flodler
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      prartition_id,
+      filesys,
+      catalog_id,
+      parent_id,
+      isfile,
+      suffix,
+      `name`,
+      hash_name,
+      vp_size,
+      remark,
+      remark1,
+      remark2,
+      is_del,
+      create_time,
+      modified_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{prartitionId,jdbcType=BIGINT},
+      #{filesys,jdbcType=VARCHAR},
+      #{catalogId,jdbcType=BIGINT},
+      #{parentId,jdbcType=BIGINT},
+      #{isfile,jdbcType=BOOLEAN},
+      #{suffix,jdbcType=CHAR},
+      #{name,jdbcType=CHAR},
+      #{hashName,jdbcType=CHAR},
+      #{vpSize,jdbcType=DOUBLE},
+      #{remark,jdbcType=VARCHAR},
+      #{remark1,jdbcType=VARCHAR},
+      #{remark2,jdbcType=VARCHAR},
+      #{isDel,jdbcType=BIGINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{modifiedTime,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      prartition_id = #{prartitionId,jdbcType=BIGINT},
+      filesys = #{filesys,jdbcType=VARCHAR},
+      catalog_id = #{catalogId,jdbcType=BIGINT},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      isfile = #{isfile,jdbcType=BOOLEAN},
+      suffix = #{suffix,jdbcType=CHAR},
+      `name` = #{name,jdbcType=CHAR},
+      hash_name = #{hashName,jdbcType=CHAR},
+      vp_size = #{vpSize,jdbcType=DOUBLE},
+      remark = #{remark,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="org.acgcloud.dmsys.model.CloudFlodlerDomain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_cloud_flodler
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="prartitionId != null">
+        prartition_id,
+      </if>
+      <if test="filesys != null">
+        filesys,
+      </if>
+      <if test="catalogId != null">
+        catalog_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="isfile != null">
+        isfile,
+      </if>
+      <if test="suffix != null">
+        suffix,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="hashName != null">
+        hash_name,
+      </if>
+      <if test="vpSize != null">
+        vp_size,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+      <if test="remark2 != null">
+        remark2,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="prartitionId != null">
+        #{prartitionId,jdbcType=BIGINT},
+      </if>
+      <if test="filesys != null">
+        #{filesys,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogId != null">
+        #{catalogId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="isfile != null">
+        #{isfile,jdbcType=BOOLEAN},
+      </if>
+      <if test="suffix != null">
+        #{suffix,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="hashName != null">
+        #{hashName,jdbcType=CHAR},
+      </if>
+      <if test="vpSize != null">
+        #{vpSize,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="prartitionId != null">
+        prartition_id = #{prartitionId,jdbcType=BIGINT},
+      </if>
+      <if test="filesys != null">
+        filesys = #{filesys,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogId != null">
+        catalog_id = #{catalogId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="isfile != null">
+        isfile = #{isfile,jdbcType=BOOLEAN},
+      </if>
+      <if test="suffix != null">
+        suffix = #{suffix,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=CHAR},
+      </if>
+      <if test="hashName != null">
+        hash_name = #{hashName,jdbcType=CHAR},
+      </if>
+      <if test="vpSize != null">
+        vp_size = #{vpSize,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

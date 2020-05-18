@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.acgcloud.dmsys.mapper.PrartitionDomainMapper">
+  <resultMap id="BaseResultMap" type="org.acgcloud.dmsys.model.PrartitionDomain">
+    <!--@mbg.generated-->
+    <!--@Table tb_prartition-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="filesys" jdbcType="VARCHAR" property="filesys" />
+    <result column="vp_name" jdbcType="CHAR" property="vpName" />
+    <result column="vp_hash_name" jdbcType="CHAR" property="vpHashName" />
+    <result column="vp_size" jdbcType="DOUBLE" property="vpSize" />
+    <result column="is_del" jdbcType="BIGINT" property="isDel" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, filesys, vp_name, vp_hash_name, vp_size, is_del, create_time, modified_time
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update tb_prartition
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="filesys = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.filesys,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="vp_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.vpName,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="vp_hash_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.vpHashName,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="vp_size = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.vpSize,jdbcType=DOUBLE}
+        </foreach>
+      </trim>
+      <trim prefix="is_del = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isDel,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="modified_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.modifiedTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_prartition
+    (filesys, vp_name, vp_hash_name, vp_size, is_del, create_time, modified_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.filesys,jdbcType=VARCHAR}, #{item.vpName,jdbcType=CHAR}, #{item.vpHashName,jdbcType=CHAR}, 
+        #{item.vpSize,jdbcType=DOUBLE}, #{item.isDel,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.modifiedTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="org.acgcloud.dmsys.model.PrartitionDomain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_prartition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      filesys,
+      vp_name,
+      vp_hash_name,
+      vp_size,
+      is_del,
+      create_time,
+      modified_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{filesys,jdbcType=VARCHAR},
+      #{vpName,jdbcType=CHAR},
+      #{vpHashName,jdbcType=CHAR},
+      #{vpSize,jdbcType=DOUBLE},
+      #{isDel,jdbcType=BIGINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{modifiedTime,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      filesys = #{filesys,jdbcType=VARCHAR},
+      vp_name = #{vpName,jdbcType=CHAR},
+      vp_hash_name = #{vpHashName,jdbcType=CHAR},
+      vp_size = #{vpSize,jdbcType=DOUBLE},
+      is_del = #{isDel,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="org.acgcloud.dmsys.model.PrartitionDomain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_prartition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="filesys != null">
+        filesys,
+      </if>
+      <if test="vpName != null">
+        vp_name,
+      </if>
+      <if test="vpHashName != null">
+        vp_hash_name,
+      </if>
+      <if test="vpSize != null">
+        vp_size,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="filesys != null">
+        #{filesys,jdbcType=VARCHAR},
+      </if>
+      <if test="vpName != null">
+        #{vpName,jdbcType=CHAR},
+      </if>
+      <if test="vpHashName != null">
+        #{vpHashName,jdbcType=CHAR},
+      </if>
+      <if test="vpSize != null">
+        #{vpSize,jdbcType=DOUBLE},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="filesys != null">
+        filesys = #{filesys,jdbcType=VARCHAR},
+      </if>
+      <if test="vpName != null">
+        vp_name = #{vpName,jdbcType=CHAR},
+      </if>
+      <if test="vpHashName != null">
+        vp_hash_name = #{vpHashName,jdbcType=CHAR},
+      </if>
+      <if test="vpSize != null">
+        vp_size = #{vpSize,jdbcType=DOUBLE},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+    <select id="selectByPrimaryKey" resultType="org.acgcloud.dmsys.model.PrartitionDomain" />
+</mapper>

@@ -1,0 +1,252 @@
+用户模块
+
+模块测试接口
+    :8088/user/main/model/info
+
+申请用户：
+    :8088/user/main/user/register
+account 用户名
+mail 邮箱
+password 密码
+
+用户登陆接口
+   :8088/user/main/user/login
+account用户名/邮箱
+password 密码
+
+
+文件系统
+    :8089/filesys/main/cloud/list/参数/
+
+
+创建物理分区
+    :8085/dmsys/main/prarition/add
+    vpName 物理分区名
+    filesys 物理路径 没有鞋控
+
+创建逻辑目录
+    :8085/dmsys/main/catalog/add
+    filesys  物理路径
+    catalogName 目录名
+
+查询所有逻辑目录
+    :8085/dmsys/main/catalog/list
+
+查询逻辑目录下的逻辑文件夹
+    :8085/dmsys/main/ls/物理路径/逻辑路径 + /文件夹名
+
+
+创建逻辑文件夹
+    :8085/dmsys/main/file/add
+    catalogName 逻辑文件夹名
+    isFile 是否为文件
+    name 文件名
+    isRoot 是否为跟目录
+
+
+
+
+参数
+
+新的文件搜索
+   :8085/role/dmsys/wk/svc/tree/map
+    无参数
+     "768": {
+                 "parentId": 768,
+                 "includeId": [
+                     769,
+                     770,
+                     771,
+                     772,
+                     773
+                 ], 包含子级文件id 不做递归
+                 "cloudFlodlerDomains": [
+                     {
+                         "id": 769,
+                         "prartitionId": null,
+                         "filesys": "/294423394dc5cf5242362952f4ee5085",
+                         "catalogId": 1,
+                         "parentId": 768,
+                         "isfile": false,
+                         "suffix": null,
+                         "name": "2017",
+                         "hashName": "2a544969ee1b43dd6a36f9e514e56e98",
+                         "vpSize": null,
+                         "logicPath": "/7e26500ceff21eacfc117cc44c8ccef8/党建工作空间/党建工作空间/党的机构与人员/高明分公司",
+                         "remark": null,
+                         "remark1": null,
+                         "remark2": null,
+                         "isDel": null,
+                         "createTime": null,
+                         "modifiedTime": null
+                     },
+                     {
+                         "id": 770,
+                         "prartitionId": null,
+                         "filesys": "/294423394dc5cf5242362952f4ee5085",
+                         "catalogId": 1,
+                         "parentId": 768,
+                         "isfile": false,
+                         "suffix": null,
+                         "name": "2018",
+                         "hashName": "cce6d0bea009a48d80a50d9cc0813f49",
+                         "vpSize": null,
+                         "logicPath": "/7e26500ceff21eacfc117cc44c8ccef8/党建工作空间/党建工作空间/党的机构与人员/高明分公司",
+                         "remark": null,
+                         "remark1": null,
+                         "remark2": null,
+                         "isDel": null,
+                         "createTime": null,
+                         "modifiedTime": null
+                     },
+                     {
+                         "id": 771,
+                         "prartitionId": null,
+                         "filesys": "/294423394dc5cf5242362952f4ee5085",
+                         "catalogId": 1,
+                         "parentId": 768,
+                         "isfile": false,
+                         "suffix": null,
+                         "name": "2019",
+                         "hashName": "0f2930c5e8c87a035c08982e338404f8",
+                         "vpSize": null,
+                         "logicPath": "/7e26500ceff21eacfc117cc44c8ccef8/党建工作空间/党建工作空间/党的机构与人员/高明分公司",
+                         "remark": null,
+                         "remark1": null,
+                         "remark2": null,
+                         "isDel": null,
+                         "createTime": null,
+                         "modifiedTime": null
+                     },
+                     {
+                         "id": 772,
+                         "prartitionId": null,
+                         "filesys": "/294423394dc5cf5242362952f4ee5085",
+                         "catalogId": 1,
+                         "parentId": 768,
+                         "isfile": false,
+                         "suffix": null,
+                         "name": "2020",
+                         "hashName": "cdd3a7c7ede6c189ef1b7c2d18dde091",
+                         "vpSize": null,
+                         "logicPath": "/7e26500ceff21eacfc117cc44c8ccef8/党建工作空间/党建工作空间/党的机构与人员/高明分公司",
+                         "remark": null,
+                         "remark1": null,
+                         "remark2": null,
+                         "isDel": null,
+                         "createTime": null,
+                         "modifiedTime": null
+                     },
+                     {
+                         "id": 773,
+                         "prartitionId": null,
+                         "filesys": "/294423394dc5cf5242362952f4ee5085",
+                         "catalogId": 1,
+                         "parentId": 768,
+                         "isfile": false,
+                         "suffix": null,
+                         "name": "2021",
+                         "hashName": "5d4c4014d8e6f7bd1b6c46d10bbccf1e",
+                         "vpSize": null,
+                         "logicPath": "/7e26500ceff21eacfc117cc44c8ccef8/党建工作空间/党建工作空间/党的机构与人员/高明分公司",
+                         "remark": null,
+                         "remark1": null,
+                         "remark2": null,
+                         "isDel": null,
+                         "createTime": null,
+                         "modifiedTime": null
+                     }
+                 ]
+             },
+
+
+查看当前文件夹的文件
+   :8081/role/dmsys/wk/svc/768/list
+   返回参数同上
+
+
+
+
+
+1.
+申请工作空间
+    :8085/dmsys/main/mkstation/add
+    id  文件id
+    userId 用户id
+    isAdmin 是否为管理员
+
+
+查询工作空间
+    :8085/dmsys/wk/svc/select/my/workstation
+
+
+
+菜单
+查询工作空间下所有文件树（梯度）
+    :8085/dmsys/wk/svc/tree/my/workstation
+    floadId 起始文件id 默认为0
+
+
+
+进入工作空间
+    :8085/role/dmsys/wk/svc/cd/my/workstation/{工作空间的id}/ + 文件夹名
+
+
+创建文件夹（上传文件）
+   :8085/role/dmsys/wk/svc/push/my/workstation
+    currFolderId 当前文件夹id
+    fileName  文件名
+    isFile  是否为文件 上传文件为true
+
+
+
+返回参数 成功后调用另外一个接口
+  改名文件名为返回的hashName值
+  :8089/acgcloud/filesys/main/cloud/opt/obj/ + 返回的文件路径
+  opt: upload
+  fileName: hash文件名,上述对象返回
+  multipartFile: 文件名
+
+
+文件下载
+  :8089/cloud/file/download/  + 目标路径
+   newFileName 普通文件
+
+
+示例
+
+
+修改密码接口(需要加token)
+    :8088/user/main/role/pwd/update
+    参数
+      {
+      	"password":"密码"
+      }
+
+获取文件接口
+   :8081/role/dmsys/wk/svc/文件id/list?order=[0|1] 0为顺序 1为倒序
+分页
+   :8081/role/dmsys/wk/svc/文件id/list/page/第几页/每页多少条记录?order=[0|1] 0为顺序 1为倒序
+新的文件搜索
+   :8085/role/dmsys/wk/svc/tree/map
+修改密码
+
+修改密码接口(需要加token)
+    :8088/user/main/role/pwd/update
+    参数
+      {
+      	"password":"密码"
+      }
+获取用户信息
+   :8088/user/main/role/info
+
+文件删除
+
+
+
+
+
+:8081/role/dmsys/wk/svc/file/del
+     id:文件id
+
+

@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.nrocn.user.mapper.UserDomainMapper">
+  <resultMap id="BaseResultMap" type="org.nrocn.user.model.UserDomain">
+    <!--@mbg.generated-->
+    <!--@Table tb_user-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="CHAR" property="username" />
+    <result column="myname" jdbcType="VARCHAR" property="myname" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="remark3" jdbcType="VARCHAR" property="remark3" />
+    <result column="remark4" jdbcType="VARCHAR" property="remark4" />
+    <result column="remark5" jdbcType="VARCHAR" property="remark5" />
+    <result column="remark6" jdbcType="VARCHAR" property="remark6" />
+    <result column="remark7" jdbcType="VARCHAR" property="remark7" />
+    <result column="remark8" jdbcType="VARCHAR" property="remark8" />
+    <result column="remark9" jdbcType="VARCHAR" property="remark9" />
+    <result column="remark10" jdbcType="VARCHAR" property="remark10" />
+    <result column="remark11" jdbcType="VARCHAR" property="remark11" />
+    <result column="remark12" jdbcType="VARCHAR" property="remark12" />
+    <result column="remark13" jdbcType="VARCHAR" property="remark13" />
+    <result column="remark14" jdbcType="VARCHAR" property="remark14" />
+    <result column="remark15" jdbcType="VARCHAR" property="remark15" />
+    <result column="remark16" jdbcType="VARCHAR" property="remark16" />
+    <result column="remark17" jdbcType="VARCHAR" property="remark17" />
+    <result column="remark18" jdbcType="VARCHAR" property="remark18" />
+    <result column="remark19" jdbcType="VARCHAR" property="remark19" />
+    <result column="remark20" jdbcType="VARCHAR" property="remark20" />
+    <result column="remark21" jdbcType="VARCHAR" property="remark21" />
+    <result column="remark22" jdbcType="VARCHAR" property="remark22" />
+    <result column="remark23" jdbcType="VARCHAR" property="remark23" />
+    <result column="remark24" jdbcType="VARCHAR" property="remark24" />
+    <result column="remark25" jdbcType="VARCHAR" property="remark25" />
+    <result column="is_del" jdbcType="BIGINT" property="isDel" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, username, myname, remark, remark1, remark2, remark3, remark4, remark5, remark6, 
+    remark7, remark8, remark9, remark10, remark11, remark12, remark13, remark14, remark15, 
+    remark16, remark17, remark18, remark19, remark20, remark21, remark22, remark23, remark24, 
+    remark25, is_del, create_time, modified_time
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update tb_user
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="username = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.username,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="myname = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.myname,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark1 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark1,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark2 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark2,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark3 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark3,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark4 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark4,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark5 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark5,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark6 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark6,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark7 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark7,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark8 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark8,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark9 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark9,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark10 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark10,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark11 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark11,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark12 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark12,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark13 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark13,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark14 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark14,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark15 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark15,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark16 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark16,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark17 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark17,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark18 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark18,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark19 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark19,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark20 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark20,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark21 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark21,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark22 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark22,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark23 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark23,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark24 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark24,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark25 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark25,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_del = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isDel,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="modified_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.modifiedTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_user
+    (username, myname, remark, remark1, remark2, remark3, remark4, remark5, remark6, 
+      remark7, remark8, remark9, remark10, remark11, remark12, remark13, remark14, remark15, 
+      remark16, remark17, remark18, remark19, remark20, remark21, remark22, remark23, 
+      remark24, remark25, is_del, create_time, modified_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.username,jdbcType=CHAR}, #{item.myname,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, 
+        #{item.remark1,jdbcType=VARCHAR}, #{item.remark2,jdbcType=VARCHAR}, #{item.remark3,jdbcType=VARCHAR}, 
+        #{item.remark4,jdbcType=VARCHAR}, #{item.remark5,jdbcType=VARCHAR}, #{item.remark6,jdbcType=VARCHAR}, 
+        #{item.remark7,jdbcType=VARCHAR}, #{item.remark8,jdbcType=VARCHAR}, #{item.remark9,jdbcType=VARCHAR}, 
+        #{item.remark10,jdbcType=VARCHAR}, #{item.remark11,jdbcType=VARCHAR}, #{item.remark12,jdbcType=VARCHAR}, 
+        #{item.remark13,jdbcType=VARCHAR}, #{item.remark14,jdbcType=VARCHAR}, #{item.remark15,jdbcType=VARCHAR}, 
+        #{item.remark16,jdbcType=VARCHAR}, #{item.remark17,jdbcType=VARCHAR}, #{item.remark18,jdbcType=VARCHAR}, 
+        #{item.remark19,jdbcType=VARCHAR}, #{item.remark20,jdbcType=VARCHAR}, #{item.remark21,jdbcType=VARCHAR}, 
+        #{item.remark22,jdbcType=VARCHAR}, #{item.remark23,jdbcType=VARCHAR}, #{item.remark24,jdbcType=VARCHAR}, 
+        #{item.remark25,jdbcType=VARCHAR}, #{item.isDel,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.modifiedTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="org.nrocn.user.model.UserDomain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      username,
+      myname,
+      remark,
+      remark1,
+      remark2,
+      remark3,
+      remark4,
+      remark5,
+      remark6,
+      remark7,
+      remark8,
+      remark9,
+      remark10,
+      remark11,
+      remark12,
+      remark13,
+      remark14,
+      remark15,
+      remark16,
+      remark17,
+      remark18,
+      remark19,
+      remark20,
+      remark21,
+      remark22,
+      remark23,
+      remark24,
+      remark25,
+      is_del,
+      create_time,
+      modified_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{username,jdbcType=CHAR},
+      #{myname,jdbcType=VARCHAR},
+      #{remark,jdbcType=VARCHAR},
+      #{remark1,jdbcType=VARCHAR},
+      #{remark2,jdbcType=VARCHAR},
+      #{remark3,jdbcType=VARCHAR},
+      #{remark4,jdbcType=VARCHAR},
+      #{remark5,jdbcType=VARCHAR},
+      #{remark6,jdbcType=VARCHAR},
+      #{remark7,jdbcType=VARCHAR},
+      #{remark8,jdbcType=VARCHAR},
+      #{remark9,jdbcType=VARCHAR},
+      #{remark10,jdbcType=VARCHAR},
+      #{remark11,jdbcType=VARCHAR},
+      #{remark12,jdbcType=VARCHAR},
+      #{remark13,jdbcType=VARCHAR},
+      #{remark14,jdbcType=VARCHAR},
+      #{remark15,jdbcType=VARCHAR},
+      #{remark16,jdbcType=VARCHAR},
+      #{remark17,jdbcType=VARCHAR},
+      #{remark18,jdbcType=VARCHAR},
+      #{remark19,jdbcType=VARCHAR},
+      #{remark20,jdbcType=VARCHAR},
+      #{remark21,jdbcType=VARCHAR},
+      #{remark22,jdbcType=VARCHAR},
+      #{remark23,jdbcType=VARCHAR},
+      #{remark24,jdbcType=VARCHAR},
+      #{remark25,jdbcType=VARCHAR},
+      #{isDel,jdbcType=BIGINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{modifiedTime,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      username = #{username,jdbcType=CHAR},
+      myname = #{myname,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR},
+      remark4 = #{remark4,jdbcType=VARCHAR},
+      remark5 = #{remark5,jdbcType=VARCHAR},
+      remark6 = #{remark6,jdbcType=VARCHAR},
+      remark7 = #{remark7,jdbcType=VARCHAR},
+      remark8 = #{remark8,jdbcType=VARCHAR},
+      remark9 = #{remark9,jdbcType=VARCHAR},
+      remark10 = #{remark10,jdbcType=VARCHAR},
+      remark11 = #{remark11,jdbcType=VARCHAR},
+      remark12 = #{remark12,jdbcType=VARCHAR},
+      remark13 = #{remark13,jdbcType=VARCHAR},
+      remark14 = #{remark14,jdbcType=VARCHAR},
+      remark15 = #{remark15,jdbcType=VARCHAR},
+      remark16 = #{remark16,jdbcType=VARCHAR},
+      remark17 = #{remark17,jdbcType=VARCHAR},
+      remark18 = #{remark18,jdbcType=VARCHAR},
+      remark19 = #{remark19,jdbcType=VARCHAR},
+      remark20 = #{remark20,jdbcType=VARCHAR},
+      remark21 = #{remark21,jdbcType=VARCHAR},
+      remark22 = #{remark22,jdbcType=VARCHAR},
+      remark23 = #{remark23,jdbcType=VARCHAR},
+      remark24 = #{remark24,jdbcType=VARCHAR},
+      remark25 = #{remark25,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="org.nrocn.user.model.UserDomain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="myname != null">
+        myname,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+      <if test="remark2 != null">
+        remark2,
+      </if>
+      <if test="remark3 != null">
+        remark3,
+      </if>
+      <if test="remark4 != null">
+        remark4,
+      </if>
+      <if test="remark5 != null">
+        remark5,
+      </if>
+      <if test="remark6 != null">
+        remark6,
+      </if>
+      <if test="remark7 != null">
+        remark7,
+      </if>
+      <if test="remark8 != null">
+        remark8,
+      </if>
+      <if test="remark9 != null">
+        remark9,
+      </if>
+      <if test="remark10 != null">
+        remark10,
+      </if>
+      <if test="remark11 != null">
+        remark11,
+      </if>
+      <if test="remark12 != null">
+        remark12,
+      </if>
+      <if test="remark13 != null">
+        remark13,
+      </if>
+      <if test="remark14 != null">
+        remark14,
+      </if>
+      <if test="remark15 != null">
+        remark15,
+      </if>
+      <if test="remark16 != null">
+        remark16,
+      </if>
+      <if test="remark17 != null">
+        remark17,
+      </if>
+      <if test="remark18 != null">
+        remark18,
+      </if>
+      <if test="remark19 != null">
+        remark19,
+      </if>
+      <if test="remark20 != null">
+        remark20,
+      </if>
+      <if test="remark21 != null">
+        remark21,
+      </if>
+      <if test="remark22 != null">
+        remark22,
+      </if>
+      <if test="remark23 != null">
+        remark23,
+      </if>
+      <if test="remark24 != null">
+        remark24,
+      </if>
+      <if test="remark25 != null">
+        remark25,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="myname != null">
+        #{myname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null">
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null">
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark6 != null">
+        #{remark6,jdbcType=VARCHAR},
+      </if>
+      <if test="remark7 != null">
+        #{remark7,jdbcType=VARCHAR},
+      </if>
+      <if test="remark8 != null">
+        #{remark8,jdbcType=VARCHAR},
+      </if>
+      <if test="remark9 != null">
+        #{remark9,jdbcType=VARCHAR},
+      </if>
+      <if test="remark10 != null">
+        #{remark10,jdbcType=VARCHAR},
+      </if>
+      <if test="remark11 != null">
+        #{remark11,jdbcType=VARCHAR},
+      </if>
+      <if test="remark12 != null">
+        #{remark12,jdbcType=VARCHAR},
+      </if>
+      <if test="remark13 != null">
+        #{remark13,jdbcType=VARCHAR},
+      </if>
+      <if test="remark14 != null">
+        #{remark14,jdbcType=VARCHAR},
+      </if>
+      <if test="remark15 != null">
+        #{remark15,jdbcType=VARCHAR},
+      </if>
+      <if test="remark16 != null">
+        #{remark16,jdbcType=VARCHAR},
+      </if>
+      <if test="remark17 != null">
+        #{remark17,jdbcType=VARCHAR},
+      </if>
+      <if test="remark18 != null">
+        #{remark18,jdbcType=VARCHAR},
+      </if>
+      <if test="remark19 != null">
+        #{remark19,jdbcType=VARCHAR},
+      </if>
+      <if test="remark20 != null">
+        #{remark20,jdbcType=VARCHAR},
+      </if>
+      <if test="remark21 != null">
+        #{remark21,jdbcType=VARCHAR},
+      </if>
+      <if test="remark22 != null">
+        #{remark22,jdbcType=VARCHAR},
+      </if>
+      <if test="remark23 != null">
+        #{remark23,jdbcType=VARCHAR},
+      </if>
+      <if test="remark24 != null">
+        #{remark24,jdbcType=VARCHAR},
+      </if>
+      <if test="remark25 != null">
+        #{remark25,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="myname != null">
+        myname = #{myname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        remark3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null">
+        remark4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null">
+        remark5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark6 != null">
+        remark6 = #{remark6,jdbcType=VARCHAR},
+      </if>
+      <if test="remark7 != null">
+        remark7 = #{remark7,jdbcType=VARCHAR},
+      </if>
+      <if test="remark8 != null">
+        remark8 = #{remark8,jdbcType=VARCHAR},
+      </if>
+      <if test="remark9 != null">
+        remark9 = #{remark9,jdbcType=VARCHAR},
+      </if>
+      <if test="remark10 != null">
+        remark10 = #{remark10,jdbcType=VARCHAR},
+      </if>
+      <if test="remark11 != null">
+        remark11 = #{remark11,jdbcType=VARCHAR},
+      </if>
+      <if test="remark12 != null">
+        remark12 = #{remark12,jdbcType=VARCHAR},
+      </if>
+      <if test="remark13 != null">
+        remark13 = #{remark13,jdbcType=VARCHAR},
+      </if>
+      <if test="remark14 != null">
+        remark14 = #{remark14,jdbcType=VARCHAR},
+      </if>
+      <if test="remark15 != null">
+        remark15 = #{remark15,jdbcType=VARCHAR},
+      </if>
+      <if test="remark16 != null">
+        remark16 = #{remark16,jdbcType=VARCHAR},
+      </if>
+      <if test="remark17 != null">
+        remark17 = #{remark17,jdbcType=VARCHAR},
+      </if>
+      <if test="remark18 != null">
+        remark18 = #{remark18,jdbcType=VARCHAR},
+      </if>
+      <if test="remark19 != null">
+        remark19 = #{remark19,jdbcType=VARCHAR},
+      </if>
+      <if test="remark20 != null">
+        remark20 = #{remark20,jdbcType=VARCHAR},
+      </if>
+      <if test="remark21 != null">
+        remark21 = #{remark21,jdbcType=VARCHAR},
+      </if>
+      <if test="remark22 != null">
+        remark22 = #{remark22,jdbcType=VARCHAR},
+      </if>
+      <if test="remark23 != null">
+        remark23 = #{remark23,jdbcType=VARCHAR},
+      </if>
+      <if test="remark24 != null">
+        remark24 = #{remark24,jdbcType=VARCHAR},
+      </if>
+      <if test="remark25 != null">
+        remark25 = #{remark25,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.acgcloud.dmsys.mapper.LogicCatalogDomainMapper">
+  <resultMap id="BaseResultMap" type="org.acgcloud.dmsys.model.LogicCatalogDomain">
+    <!--@mbg.generated-->
+    <!--@Table tb_logic_catalog-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="prartition_id" jdbcType="BIGINT" property="prartitionId" />
+    <result column="catalog_name" jdbcType="CHAR" property="catalogName" />
+    <result column="catalog_hash_name" jdbcType="CHAR" property="catalogHashName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="remark3" jdbcType="VARCHAR" property="remark3" />
+    <result column="remark4" jdbcType="VARCHAR" property="remark4" />
+    <result column="remark5" jdbcType="VARCHAR" property="remark5" />
+    <result column="remark6" jdbcType="VARCHAR" property="remark6" />
+    <result column="remark7" jdbcType="VARCHAR" property="remark7" />
+    <result column="is_del" jdbcType="BIGINT" property="isDel" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, prartition_id, `catalog_name`, catalog_hash_name, remark, remark1, remark2, remark3, 
+    remark4, remark5, remark6, remark7, is_del, create_time, modified_time
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update tb_logic_catalog
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="prartition_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.prartitionId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="`catalog_name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.catalogName,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="catalog_hash_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.catalogHashName,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark1 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark1,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark2 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark2,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark3 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark3,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark4 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark4,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark5 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark5,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark6 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark6,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark7 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.remark7,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_del = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isDel,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="modified_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.modifiedTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_logic_catalog
+    (prartition_id, `catalog_name`, catalog_hash_name, remark, remark1, remark2, remark3, 
+      remark4, remark5, remark6, remark7, is_del, create_time, modified_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.prartitionId,jdbcType=BIGINT}, #{item.catalogName,jdbcType=CHAR}, #{item.catalogHashName,jdbcType=CHAR}, 
+        #{item.remark,jdbcType=VARCHAR}, #{item.remark1,jdbcType=VARCHAR}, #{item.remark2,jdbcType=VARCHAR}, 
+        #{item.remark3,jdbcType=VARCHAR}, #{item.remark4,jdbcType=VARCHAR}, #{item.remark5,jdbcType=VARCHAR}, 
+        #{item.remark6,jdbcType=VARCHAR}, #{item.remark7,jdbcType=VARCHAR}, #{item.isDel,jdbcType=BIGINT}, 
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.modifiedTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="org.acgcloud.dmsys.model.LogicCatalogDomain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_logic_catalog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      prartition_id,
+      `catalog_name`,
+      catalog_hash_name,
+      remark,
+      remark1,
+      remark2,
+      remark3,
+      remark4,
+      remark5,
+      remark6,
+      remark7,
+      is_del,
+      create_time,
+      modified_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{prartitionId,jdbcType=BIGINT},
+      #{catalogName,jdbcType=CHAR},
+      #{catalogHashName,jdbcType=CHAR},
+      #{remark,jdbcType=VARCHAR},
+      #{remark1,jdbcType=VARCHAR},
+      #{remark2,jdbcType=VARCHAR},
+      #{remark3,jdbcType=VARCHAR},
+      #{remark4,jdbcType=VARCHAR},
+      #{remark5,jdbcType=VARCHAR},
+      #{remark6,jdbcType=VARCHAR},
+      #{remark7,jdbcType=VARCHAR},
+      #{isDel,jdbcType=BIGINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{modifiedTime,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      prartition_id = #{prartitionId,jdbcType=BIGINT},
+      `catalog_name` = #{catalogName,jdbcType=CHAR},
+      catalog_hash_name = #{catalogHashName,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR},
+      remark4 = #{remark4,jdbcType=VARCHAR},
+      remark5 = #{remark5,jdbcType=VARCHAR},
+      remark6 = #{remark6,jdbcType=VARCHAR},
+      remark7 = #{remark7,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="org.acgcloud.dmsys.model.LogicCatalogDomain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_logic_catalog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="prartitionId != null">
+        prartition_id,
+      </if>
+      <if test="catalogName != null">
+        `catalog_name`,
+      </if>
+      <if test="catalogHashName != null">
+        catalog_hash_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+      <if test="remark2 != null">
+        remark2,
+      </if>
+      <if test="remark3 != null">
+        remark3,
+      </if>
+      <if test="remark4 != null">
+        remark4,
+      </if>
+      <if test="remark5 != null">
+        remark5,
+      </if>
+      <if test="remark6 != null">
+        remark6,
+      </if>
+      <if test="remark7 != null">
+        remark7,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="prartitionId != null">
+        #{prartitionId,jdbcType=BIGINT},
+      </if>
+      <if test="catalogName != null">
+        #{catalogName,jdbcType=CHAR},
+      </if>
+      <if test="catalogHashName != null">
+        #{catalogHashName,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null">
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null">
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark6 != null">
+        #{remark6,jdbcType=VARCHAR},
+      </if>
+      <if test="remark7 != null">
+        #{remark7,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="prartitionId != null">
+        prartition_id = #{prartitionId,jdbcType=BIGINT},
+      </if>
+      <if test="catalogName != null">
+        `catalog_name` = #{catalogName,jdbcType=CHAR},
+      </if>
+      <if test="catalogHashName != null">
+        catalog_hash_name = #{catalogHashName,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        remark3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null">
+        remark4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null">
+        remark5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark6 != null">
+        remark6 = #{remark6,jdbcType=VARCHAR},
+      </if>
+      <if test="remark7 != null">
+        remark7 = #{remark7,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
