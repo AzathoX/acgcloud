@@ -12,6 +12,8 @@ public class FileOptionRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String path;
+
     private String opt;
 
     private File file;
@@ -20,10 +22,14 @@ public class FileOptionRequest implements Serializable {
 
     private String fileName;
 
+    private String[] fileNames;
+
     private String filePath;
 
     private MultipartFile multipartFile;
 
+
+    private MultipartFile[] files;
 
 
 

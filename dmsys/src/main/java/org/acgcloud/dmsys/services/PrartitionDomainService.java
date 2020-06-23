@@ -2,6 +2,7 @@ package org.acgcloud.dmsys.services;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.acgcloud.dmsys.model.PrartitionDomain;
+
 import java.util.List;
 
 public interface PrartitionDomainService extends IService<PrartitionDomain> {

@@ -1,7 +1,6 @@
-package org.acgcloud.dmsys.config;
+package org.acgcloud.config;
 
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"org.nrocn.friday.config","org.nrocn.user","org.acgcloud.config"})
+@ComponentScan(basePackages = {"org.nrocn.friday.config","org.nrocn.user", "org.acgcloud.dmsys.config"})
 @EnableFeignClients(basePackages = "org.acgcloud.dmsys.services.feign")
 @EnableJpaRepositories(basePackages = "org.acgcloud.dmsys.dao")
 @MapperScan("org.acgcloud.dmsys.mapper")

@@ -1,16 +1,15 @@
 package org.acgcloud.dmsys.services.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.acgcloud.dmsys.mapper.WkstationDomainMapper;
-import org.acgcloud.dmsys.services.WkstationDomainService;
 import org.springframework.stereotype.Service;
+import org.acgcloud.dmsys.mapper.WkstationDomainMapper;
+import org.acgcloud.dmsys.model.WkstationDomain;
+import org.acgcloud.dmsys.services.WkstationDomainService;
 
 import java.util.List;
 
-import org.acgcloud.dmsys.model.WkstationDomain;
-
 @Service
-public class WkstationDomainServiceImpl extends ServiceImpl<WkstationDomainMapper, WkstationDomain> implements WkstationDomainService {
+public class WkstationDomainServiceImpl extends ServiceImpl<WkstationDomainMapper, WkstationDomain> implements WkstationDomainService{
 
     @Override
     public int updateBatch(List<WkstationDomain> list) {

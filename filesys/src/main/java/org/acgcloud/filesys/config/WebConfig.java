@@ -10,6 +10,8 @@ public class WebConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+//        registry.addResourceHandler("/acgcloud/**").addResourceLocations("classpath:/static/acgcloud/");
+//        registry.addResourceHandler("/**").addResourceLocations("/","classpath:/");
         super.addResourceHandlers(registry);
     }
 }

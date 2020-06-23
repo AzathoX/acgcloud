@@ -4,16 +4,6 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.crypto.digest.DigestUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.acgcloud.dmsys.dto.FileDomainRequest;
-import org.acgcloud.dmsys.entity.LogicCatalogEntity;
-import org.acgcloud.dmsys.entity.PrartitionEntity;
-import org.acgcloud.dmsys.model.CloudFlodlerDomain;
-import org.acgcloud.dmsys.model.LogicCatalogDomain;
-import org.acgcloud.dmsys.model.PrartitionDomain;
-import org.acgcloud.dmsys.model.WkstationDomain;
-import org.acgcloud.dmsys.services.*;
-import org.acgcloud.dmsys.services.feign.IFileOptionServices;
-import org.acgcloud.dmsys.utils.RequestUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.nrocn.lib.baserqnp.AbstractResponse;
 import org.nrocn.lib.baserqnp.IMicroResponsable;
@@ -27,6 +17,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.acgcloud.common.dto.WebResponse;
+import org.acgcloud.dmsys.dto.FileDomainRequest;
+import org.acgcloud.dmsys.entity.LogicCatalogEntity;
+import org.acgcloud.dmsys.entity.PrartitionEntity;
+import org.acgcloud.dmsys.model.*;
+import org.acgcloud.dmsys.services.*;
+import org.acgcloud.dmsys.services.feign.IFileOptionServices;
+import org.acgcloud.dmsys.utils.RequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -38,7 +35,7 @@ public class MainSvController {
 
 
     @Autowired
-    private IFileOptionServices fileOptionServices;
+    private  IFileOptionServices fileOptionServices;
 
 
     @Autowired
@@ -78,7 +75,7 @@ public class MainSvController {
 
     //申请物理分区 rpc
     @RequestMapping("/prarition/add")
-    public IMicroResponsable praritionApplyFor(@RequestBody FileDomainRequest fileDomainRequest){
+    public IMicroResponsable praritionApplyFor(@RequestBody  FileDomainRequest fileDomainRequest){
         PrartitionDomain prartitionDomain = prartitionDomainService.getOne(new QueryWrapper<PrartitionDomain>()
                 .eq(PrartitionDomain.COL_VP_NAME, fileDomainRequest.getVpName()));
         fileDomainRequest.setIsFile(false);
@@ -117,7 +114,7 @@ public class MainSvController {
         PrartitionDomain prartitionDomain = prartitionDomainService.getOne(new QueryWrapper<PrartitionDomain>().eq(PrartitionDomain.COL_VP_HASH_NAME, fileDomainRequest.getVpHashName())
                 .eq(PrartitionDomain.COL_FILESYS, fileDomainRequest.getFilesys()));
         if(ObjectUtils.isEmpty(prartitionDomain)){
-            return WebResponse.getPrototype().failedResp("该分区不存在请前往创建",ResultCode.FAILURE);
+            return WebResponse.getPrototype().failedResp("该分区不存在请前往创建", ResultCode.FAILURE);
         }
         //分区存在,找是否存在同名目录
         LogicCatalogDomain logicCatalogDomain = logicCatalogDomainService.getOne(new QueryWrapper<LogicCatalogDomain>()
@@ -125,7 +122,7 @@ public class MainSvController {
                 .eq(LogicCatalogDomain.COL_CATALOG_NAME, fileDomainRequest.getCatalogName())
                 .eq(true,LogicCatalogDomain.COL_IS_DEL,0));
         if(ObjectUtils.allNotNull(logicCatalogDomain)){
-            return WebResponse.getPrototype().failedResp("存在同名目录",ResultCode.FAILURE);
+            return WebResponse.getPrototype().failedResp("存在同名目录", ResultCode.FAILURE);
         }
         //在当前分区中创建顶级目录
         logicCatalogDomain = new LogicCatalogDomain();
@@ -160,7 +157,7 @@ public class MainSvController {
 
     //查询文件
     @RequestMapping("/ls/{filesys}/**")
-    public IMicroResponsable fileQuery(@PathVariable String filesys ,HttpServletRequest req){
+    public IMicroResponsable fileQuery(@PathVariable String filesys , HttpServletRequest req){
         String variablePath = RequestUtils.getVariablePath(req);
         //查询当前目录下的所有对象
         List<CloudFlodlerDomain> cloudFlodlerDomains = cloudFlodlerDomainService.list(new QueryWrapper<CloudFlodlerDomain>().eq(CloudFlodlerDomain.COL_LOGIC_PATH, "/" + variablePath)
@@ -176,7 +173,7 @@ public class MainSvController {
         //根据cataloghash值查询到分区
         LogicCatalogEntity logicCatalogEntity = jpaRepositoryServices.findByCatalogName(fileDomainRequest.getCatalogName());
         if(ObjectUtils.isEmpty(logicCatalogEntity)){
-            return WebResponse.getPrototype().failedResp("该分区或目录不存在请前往创建",ResultCode.FAILURE);
+            return WebResponse.getPrototype().failedResp("该分区或目录不存在请前往创建", ResultCode.FAILURE);
         }
         //文件真实路径 = 物理分区 路径 + 分区hash + 文件hash
         PrartitionEntity prartitionEntity = logicCatalogEntity.getPrartitionEntity();
@@ -192,7 +189,7 @@ public class MainSvController {
                 .eq(CloudFlodlerDomain.COL_PARENT_ID,fileDomainRequest.getParentId())
                 .eq(CloudFlodlerDomain.COL_IS_DEL,0));
         if(ObjectUtils.allNotNull(cloudFlodlerDomain)){
-            return WebResponse.getPrototype().failedResp("文件已存在",ResultCode.FAILURE);
+            return WebResponse.getPrototype().failedResp("文件已存在", ResultCode.FAILURE);
         }
         //计算hash
         String fileName = DigestUtil.md5Hex(fileDomainRequest.getName() + UUID.fastUUID() + DateUtil.now());
@@ -207,7 +204,7 @@ public class MainSvController {
         else{
             cloudFlodlerDomain = cloudFlodlerDomainService.getById(fileDomainRequest.getParentId());
             if(ObjectUtils.isEmpty(cloudFlodlerDomain)){
-                return WebResponse.getPrototype().failedResp("父级文件不存在",ResultCode.FAILURE);
+                return WebResponse.getPrototype().failedResp("父级文件不存在", ResultCode.FAILURE);
             }
             String logicPath = cloudFlodlerDomain.getLogicPath() + "/" + cloudFlodlerDomain.getName();
             fileDomainRequest.setLogicPath(logicPath);
@@ -249,7 +246,7 @@ public class MainSvController {
     public IMicroResponsable fileUpload(FileDomainRequest fileDomainRequest){
         MultipartFile multipartFile = fileDomainRequest.getMultipartFile();
         if(ObjectUtils.isEmpty(multipartFile)||ObjectUtils.isEmpty(multipartFile.getOriginalFilename())){
-            return WebResponse.getPrototype().failedResp("找不到文件,请确认是否上传",ResultCode.FAILURE);
+            return WebResponse.getPrototype().failedResp("找不到文件,请确认是否上传", ResultCode.FAILURE);
         }
         fileDomainRequest.setName(multipartFile.getOriginalFilename());
         fileDomainRequest.setIsFile(true);
@@ -257,7 +254,7 @@ public class MainSvController {
         //根据cataloghash值查询到分区
         LogicCatalogEntity logicCatalogEntity = jpaRepositoryServices.findByCatalogHashName(fileDomainRequest.getCatalogHashName());
         if(ObjectUtils.isEmpty(logicCatalogEntity)){
-            return WebResponse.getPrototype().failedResp("该分区或目录不存在请前往创建",ResultCode.FAILURE);
+            return WebResponse.getPrototype().failedResp("该分区或目录不存在请前往创建", ResultCode.FAILURE);
         }
         //文件真实路径 = 物理分区 路径 + 分区hash + 文件hash
         PrartitionEntity prartitionEntity = logicCatalogEntity.getPrartitionEntity();
@@ -274,7 +271,7 @@ public class MainSvController {
                 .eq(CloudFlodlerDomain.COL_PARENT_ID,fileDomainRequest.getParentId())
                 .eq(CloudFlodlerDomain.COL_IS_DEL,0));
         if(ObjectUtils.allNotNull(cloudFlodlerDomain)){
-            return WebResponse.getPrototype().failedResp("文件已存在",ResultCode.FAILURE);
+            return WebResponse.getPrototype().failedResp("文件已存在", ResultCode.FAILURE);
         }
         //计算hash
         String fileName = DigestUtil.md5Hex(fileDomainRequest.getName() + UUID.fastUUID() + DateUtil.now());
@@ -284,7 +281,7 @@ public class MainSvController {
         //存在
         cloudFlodlerDomain = cloudFlodlerDomainService.getById(fileDomainRequest.getParentId());
         if(ObjectUtils.isEmpty(cloudFlodlerDomain)){
-            return WebResponse.getPrototype().failedResp("父级文件不存在",ResultCode.FAILURE);
+            return WebResponse.getPrototype().failedResp("父级文件不存在", ResultCode.FAILURE);
         }
         String logicPath = cloudFlodlerDomain.getLogicPath() + "/" + cloudFlodlerDomain.getName();
         fileDomainRequest.setLogicPath(logicPath);
@@ -307,18 +304,18 @@ public class MainSvController {
         //判断逻辑文件夹是否存在
         CloudFlodlerDomain flodler = cloudFlodlerDomainService.getById(fileDomainRequest.getId());
         if(ObjectUtils.isEmpty(flodler)){
-            return WebResponse.getPrototype().failedResp("申请失败,不存在该目录",ResultCode.NOT_FOUND);
+            return WebResponse.getPrototype().failedResp("申请失败,不存在该目录", ResultCode.NOT_FOUND);
         }
         //判断用户id
         UserDomain user = userDomainService.getById(fileDomainRequest.getUserId());
         if(ObjectUtils.isEmpty(user)){
-            return WebResponse.getPrototype().failedResp("用户信息不正确",ResultCode.NOT_FOUND);
+            return WebResponse.getPrototype().failedResp("用户信息不正确", ResultCode.NOT_FOUND);
         }
         WkstationDomain one = wkstationDomainService.getOne(new QueryWrapper<WkstationDomain>().select(WkstationDomain.COL_ID)
                 .eq(WkstationDomain.COL_USER_ID, user.getId()).eq(WkstationDomain.COL_FLODLER_ID, flodler.getId())
                 .eq(WkstationDomain.COL_IS_DEL, 0));
         if(ObjectUtils.allNotNull(one)){
-            return WebResponse.getPrototype().failedResp("该工作空间已申请过一次",ResultCode.NOT_FOUND);
+            return WebResponse.getPrototype().failedResp("该工作空间已申请过一次", ResultCode.NOT_FOUND);
         }
         //如果存在则写入
         WkstationDomain wkstationDomain = new WkstationDomain();

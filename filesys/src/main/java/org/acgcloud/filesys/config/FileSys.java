@@ -1,12 +1,12 @@
-package org.acgcloud.dmsys.config;
+package org.acgcloud.filesys.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(value = "acgcsloud.dmsys")
+@ConfigurationProperties(prefix = "filesys")
 @Data
-public class DmsysConfig {
-    private String dependOnUri;
+public class FileSys {
+    private String path;
 }

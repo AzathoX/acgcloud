@@ -1,16 +1,16 @@
 package org.acgcloud.dmsys.services.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.acgcloud.dmsys.mapper.PrartitionDomainMapper;
 import org.acgcloud.dmsys.model.PrartitionDomain;
 import org.acgcloud.dmsys.services.PrartitionDomainService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PrartitionDomainServiceImpl extends ServiceImpl<PrartitionDomainMapper, PrartitionDomain> implements PrartitionDomainService {
+public class PrartitionDomainServiceImpl extends ServiceImpl<PrartitionDomainMapper,PrartitionDomain> implements PrartitionDomainService {
 
     @Autowired
     private PrartitionDomainMapper prartitionDomainMapper;

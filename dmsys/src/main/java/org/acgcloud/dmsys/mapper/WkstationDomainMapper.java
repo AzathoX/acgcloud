@@ -1,10 +1,11 @@
 package org.acgcloud.dmsys.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.acgcloud.dmsys.model.WkstationDomain;
+
+import java.util.List;
 
 @Mapper
 public interface WkstationDomainMapper extends BaseMapper<WkstationDomain> {

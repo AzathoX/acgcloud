@@ -1,5 +1,7 @@
 package org.acgcloud.account.controller;
 
+
+import org.acgcloud.account.dto.AccountRequest;
 import org.apache.commons.lang3.ObjectUtils;
 import org.nrocn.friday.crypto.SignUtils;
 import org.nrocn.friday.model.FridaySession;
@@ -13,7 +15,6 @@ import org.nrocn.user.model.UserDomain;
 import org.nrocn.user.services.JpaUserRespositoryServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.acgcloud.account.dto.AccountRequest;
 import org.acgcloud.common.dto.WebResponse;
 
 import javax.servlet.http.Cookie;
@@ -66,6 +67,19 @@ public class MainSvController {
         info.getAccountEntity().setId(-1);
         info.setId(-1);
         return WebResponse.getPrototype().successResp("返回成功",info);
+    }
+
+    @RequestMapping("/role/token")
+    public IMicroResponsable token(){
+        FridaySession token = FridayUtil.getFridaySessionFromRequest(httpServletRequest);
+        UserEntity info = jpaUserRespositoryServices.info(token.getUserId());
+        String jwt = setCookieAndToken(info);
+        Cookie cookie = new Cookie(AuthConstant.COOKIE_NAME,jwt);
+        cookie.setMaxAge(3600);
+        cookie.setPath("/");
+        httpServletResponse.addCookie(cookie);
+        httpServletResponse.addHeader(AuthConstant.COOKIE_NAME,jwt);
+        return WebResponse.getPrototype().successResp("登录成功",jwt);
     }
 
     @RequestMapping(value = "/role/pwd/update",consumes = "application/json")

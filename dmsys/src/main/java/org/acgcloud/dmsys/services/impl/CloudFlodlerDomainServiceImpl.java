@@ -1,15 +1,15 @@
 package org.acgcloud.dmsys.services.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 import org.acgcloud.dmsys.mapper.CloudFlodlerDomainMapper;
 import org.acgcloud.dmsys.model.CloudFlodlerDomain;
 import org.acgcloud.dmsys.services.CloudFlodlerDomainService;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CloudFlodlerDomainServiceImpl extends ServiceImpl<CloudFlodlerDomainMapper, CloudFlodlerDomain> implements CloudFlodlerDomainService {
+public class CloudFlodlerDomainServiceImpl extends ServiceImpl<CloudFlodlerDomainMapper, CloudFlodlerDomain> implements CloudFlodlerDomainService{
 
 
 

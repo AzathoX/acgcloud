@@ -1,4 +1,4 @@
-package org.acgcloud.filesys.config;
+package org.acgcloud.common.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

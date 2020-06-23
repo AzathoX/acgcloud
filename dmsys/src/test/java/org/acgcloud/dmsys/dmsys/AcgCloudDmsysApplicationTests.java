@@ -1,6 +1,6 @@
-package org.acgcloud.dmsys;
+package org.acgcloud.dmsys.dmsys;
 
-import org.acgcloud.dmsys.config.DmsysConfig;
+import org.acgcloud.config.DmsysConfig;
 import org.acgcloud.dmsys.dao.LogicCatalogEntityRepository;
 import org.acgcloud.dmsys.dao.PrartitionEntityRepository;
 import org.acgcloud.dmsys.dto.FileDomainRequest;

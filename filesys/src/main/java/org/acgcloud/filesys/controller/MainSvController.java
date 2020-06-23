@@ -1,9 +1,6 @@
 package org.acgcloud.filesys.controller;
 
-import org.acgcloud.filesys.dto.FileOptionRequest;
-import org.acgcloud.filesys.dto.RelativeFileResponse;
-import org.acgcloud.filesys.services.IFileOptStragy;
-import org.acgcloud.filesys.services.IFileOptionServices;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.nrocn.lib.baseobj.RelativeFileObj;
 import org.nrocn.lib.baserqnp.IMicroResponsable;
@@ -12,13 +9,18 @@ import org.nrocn.lib.utils.BaseFileUtils;
 import org.nrocn.lib.utils.BaseIOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.HandlerMapping;
 import org.acgcloud.common.dto.WebResponse;
+import org.acgcloud.common.utils.RequestUtils;
+import org.acgcloud.filesys.config.FileSys;
+import org.acgcloud.filesys.dto.FileOptionRequest;
+import org.acgcloud.filesys.dto.RelativeFileResponse;
+import org.acgcloud.filesys.services.IFileOptStragy;
+import org.acgcloud.filesys.services.IFileOptionServices;
 
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -41,19 +43,36 @@ public class MainSvController  {
 
 
 
-    private static final String ACGCLOUD = "/static/acgcloud";
+    private static final String ACGCLOUD = "/static/acgcloud" ;
 
     private static final String FILE_CONTEXT_PATH = MainSvController.class.getClassLoader()
             .getResource("").getPath();
 
 
-    //解析路径
+    @Autowired
+    private FileSys fileSys;
+
+    @PostConstruct
+    public void init(){
+        this.mapFile("",true);
+    }
+
+
+    private  File mapFile(String path,boolean create){
+        String basePath = FILE_CONTEXT_PATH + ACGCLOUD;
+        if(ObjectUtils.isNotEmpty(fileSys.getPath())){
+            basePath = fileSys.getPath();
+        }
+        basePath += ("/" + path);
+        File file = BaseFileUtils.find(basePath);
+        if(ObjectUtils.isEmpty(file) && create){
+            file = BaseFileUtils.mkdir(basePath);
+        }
+        return file;
+    }
+
     private String getVariablePath(HttpServletRequest req){
-        final String fullUrl =
-                req.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE).toString();
-        final String firstUrl = (String) req.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
-        String path = new AntPathMatcher().extractPathWithinPattern(firstUrl, fullUrl);
-        return  path;
+        return RequestUtils.requestVariablePath(req);
     }
 
     //模块标识
@@ -65,11 +84,11 @@ public class MainSvController  {
 
     //操作文件对象的方式
     @RequestMapping("/cloud/opt/obj/**")
-    public IMicroResponsable cloudOpt(FileOptionRequest fileOptionRequest, HttpServletRequest req){
-        return cloudOpt(fileOptionRequest.getOpt(),fileOptionRequest.getFileName(),
-                fileOptionRequest.getIsFile(),fileOptionRequest.getMultipartFile(),req);
+    public IMicroResponsable cloudOpt(FileOptionRequest fileOptionRequest,HttpServletRequest req){
+        final String path = getVariablePath(req);
+        fileOptionRequest.setPath(path);
+        return doOption(fileOptionRequest);
     }
-
 
 
 
@@ -81,39 +100,49 @@ public class MainSvController  {
                                       @RequestParam(required = false) MultipartFile multipartFile,
                                       HttpServletRequest req){
         final String path = getVariablePath(req);
-        File file = new File(FILE_CONTEXT_PATH + ACGCLOUD + "/" + path);
-        //不存在文件 404
-        if(!file.exists()){
-            return WebResponse.getPrototype().failedResp("文件不存在", ResultCode.NOT_FOUND,path);
-        }
         FileOptionRequest fileOptionRequest = new FileOptionRequest();
+        fileOptionRequest.setPath(path);
+        fileOptionRequest.setOpt(optional);
         fileOptionRequest.setIsFile(isFile);
         fileOptionRequest.setMultipartFile(multipartFile);
         fileOptionRequest.setFileName(fileName);
-        fileOptionRequest.setFile(new File(FILE_CONTEXT_PATH + ACGCLOUD + "/"
-                + path + "/" + fileOptionRequest.getFileName()));
-        IFileOptStragy bean = fileOptionServices.doService(fileOptionRequest, optional);
-        bean.setFileOptionRequest(null);
-        return WebResponse.getPrototype().successResp(bean != null?bean.getOptCn():"操作失败",bean);
+        return doOption(fileOptionRequest);
     }
 
+    @RequestMapping("/cloud/do/option")
+    public IMicroResponsable doOption(FileOptionRequest fileOptionRequest){
+        if(StringUtils.isAllBlank(fileOptionRequest.getFileName(),fileOptionRequest.getPath(),fileOptionRequest.getOpt())){
+            return WebResponse.getPrototype().failedResp("操作错误缺少参数", ResultCode.NOT_FOUND);
+        }
+        final String path =  fileOptionRequest.getPath();
+        File file = mapFile(path,false);
+        //不存在文件 404
+        if(ObjectUtils.isEmpty(file)){
+            return WebResponse.getPrototype().failedResp("文件不存在", ResultCode.NOT_FOUND,path);
+        }
+        fileOptionRequest.setFile(new File(file.getAbsolutePath() + "/" + fileOptionRequest.getFileName()));
+        IFileOptStragy bean = fileOptionServices.doService(fileOptionRequest, fileOptionRequest.getOpt());
+        bean.setFileOptionRequest(null);
+        bean.setFile(null);
+        return WebResponse.getPrototype().successResp(bean != null?bean.getOptCn():"操作失败",bean);
+    }
 
     //获取文件列表
     @GetMapping("/cloud/list/**")
     public IMicroResponsable cloudList(HttpServletRequest req){
         final String path = getVariablePath(req);
-        File file = new File(FILE_CONTEXT_PATH + ACGCLOUD + "/" + path);
+        File file = mapFile(path,false);
         //不存在文件 404
-        if(!file.exists()){
+        if(ObjectUtils.isEmpty(file)){
             return WebResponse.getPrototype().failedResp("文件不存在", ResultCode.NOT_FOUND,path);
         }
         try {
             //文件夹
-            List<RelativeFileObj> filelist = BaseFileUtils.ls(FILE_CONTEXT_PATH + ACGCLOUD + "/" + path);
+            List<RelativeFileObj> filelist = BaseFileUtils.ls(file.getAbsolutePath());
             int liof = path.lastIndexOf("/");
             String parentPath = path.substring(0,liof > 0 ? liof:0);
             RelativeFileResponse relativeFileResponse = new RelativeFileResponse(parentPath,filelist);
-            relativeFileResponse.setCurrent(StringUtils.isBlank(path)?ACGCLOUD + "/":path);
+            relativeFileResponse.setCurrent(StringUtils.isBlank(path)?file.getName() + "/":path);
             return WebResponse.getPrototype().successResp("文件列表",relativeFileResponse);
         } catch (Exception e) {
             return WebResponse.getPrototype().failedResp("文件列表", ResultCode.FAILURE,path);
@@ -126,8 +155,8 @@ public class MainSvController  {
     public IMicroResponsable cloudFileExists(@RequestParam String fileName,
                                       HttpServletRequest req){
         final String path = getVariablePath(req);
-        File file = new File(FILE_CONTEXT_PATH + ACGCLOUD + "/" + path + "/" + fileName);
-        return  WebResponse.getPrototype().successResp("文件" +(file.exists()?"存在":"不存在"),file.exists());
+        File file = mapFile(path + "/" +fileName ,false);
+        return  WebResponse.getPrototype().successResp("文件" +(ObjectUtils.isEmpty(file)?"存在":"不存在"),file.exists());
     }
 
 
@@ -137,7 +166,10 @@ public class MainSvController  {
     public void cloudFileDown(@RequestParam String newFileName,
                               HttpServletRequest req) throws IOException {
         final String path = getVariablePath(req);
-        File file = new File(FILE_CONTEXT_PATH + ACGCLOUD + "/" + path);
+        File file = mapFile(path,false);
+        if(ObjectUtils.isEmpty(file)){
+            BaseIOUtils.httpHtmlWriteResponse(resp,"该路径文件不存在");
+        }
         BaseIOUtils.httpDownloadFileResponse(file,newFileName,resp);
     }
 

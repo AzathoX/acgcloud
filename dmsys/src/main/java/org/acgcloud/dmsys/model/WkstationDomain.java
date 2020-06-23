@@ -1,14 +1,14 @@
 package org.acgcloud.dmsys.model;
 
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @TableName(value = "tb_cloud_wkstation")

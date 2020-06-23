@@ -2,7 +2,6 @@ package org.acgcloud.dmsys.dto;
 
 import lombok.Data;
 import org.nrocn.lib.baseobj.AbstractDomain;
-import org.nrocn.lib.baseobj.BaseDomain;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
@@ -18,7 +17,7 @@ public class FileDomainRequest extends AbstractDomain {
 
     private  String filesys;
 
-    private Integer catalogId;
+    private Long catalogId;
 
     private String catalogName;
 
@@ -31,6 +30,8 @@ public class FileDomainRequest extends AbstractDomain {
     private Long parentId;
 
     private String suffix;
+
+    private Boolean upload;
 
     private String name;
 

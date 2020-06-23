@@ -21,6 +21,7 @@ public class CloudFlodlerEntity {
     private String suffix;
     private String name;
     private String hashName;
+    private Boolean uploading;
     private Double vpSize;
     private long isDel;
     private Timestamp createTime;
@@ -144,6 +145,17 @@ public class CloudFlodlerEntity {
 
     public void setIsDel(long isDel) {
         this.isDel = isDel;
+    }
+
+
+    @Basic
+    @Column(name = "uploading")
+    public Boolean getUploading() {
+        return uploading;
+    }
+
+    public void setUploading(Boolean uploading) {
+        this.uploading = uploading;
     }
 
     @Basic

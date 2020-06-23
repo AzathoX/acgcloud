@@ -15,5 +15,8 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 acgcloud:
-  dmsys:
-    dependOnUri:
+    dmsys:
+      port:
+      depend-on-uri:
+    optrx:
+      port:

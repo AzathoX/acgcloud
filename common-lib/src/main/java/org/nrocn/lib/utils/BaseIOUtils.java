@@ -7,6 +7,8 @@ import java.net.URLEncoder;
 
 public abstract class BaseIOUtils {
 
+    private static final Integer BUFFER_SIZE = 8192;
+
 
     /**
      * 文件下载http相应输出流
@@ -72,7 +74,7 @@ public abstract class BaseIOUtils {
      * @return
      */
     public static long copy(InputStream in, OutputStream out) {
-        return copy(in, out, 8192);
+        return copy(in, out, BUFFER_SIZE);
     }
 
     /**
@@ -100,6 +102,15 @@ public abstract class BaseIOUtils {
             }
         } catch (IOException ioEx) {
             ioEx.printStackTrace();
+        }
+        finally {
+            try{
+                bufferedInputStream.close();
+                bufferedOutputStream.close();
+            }catch (IOException ioe){
+                System.out.println("关闭异常");
+            }
+
         }
         return size;
     }

@@ -22,6 +22,7 @@
 		<module>common</module>
 		<module>config</module>
 		<module>filesys</module>
+		<module>optrxsys</module>
 		<module>account</module>
 		<module>dmsys</module>
 		<module>web-app</module>

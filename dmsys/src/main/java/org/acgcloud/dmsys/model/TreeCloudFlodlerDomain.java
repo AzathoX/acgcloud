@@ -11,11 +11,15 @@ import java.util.List;
 public class TreeCloudFlodlerDomain {
     private Long flodlerId;
 
+    private Long  currInt;
+
+    private String label;
+
     private  CloudFlodlerDomain cloudFlodlerDomain;
 
     private List<CloudFlodlerDomain> cloudFlodlerDomains;
 
-    private  List<TreeCloudFlodlerDomain> treeCloudFlodlerDomains;
+    private  List<TreeCloudFlodlerDomain> children;
 
     public   void addCloudFloaderDomains(CloudFlodlerDomain cloudFlodlerDomain){
          if(this.cloudFlodlerDomains == null){
@@ -25,10 +29,10 @@ public class TreeCloudFlodlerDomain {
     }
 
     public   void addTreeCloudFloaderDomains(TreeCloudFlodlerDomain treeCloudFlodlerDomain){
-        if(this.treeCloudFlodlerDomains == null){
-            this.treeCloudFlodlerDomains = new ArrayList<>();
+        if(this.children == null){
+            this.children = new ArrayList<>();
         }
-        this.treeCloudFlodlerDomains.add(treeCloudFlodlerDomain);
+        this.children.add(treeCloudFlodlerDomain);
     }
 
     @Override
@@ -37,7 +41,7 @@ public class TreeCloudFlodlerDomain {
                 "flodlerId=" + flodlerId +
                 ", cloudFlodlerDomain=" + cloudFlodlerDomain +
                 ", cloudFlodlerDomains=" + cloudFlodlerDomains +
-                ", treeCloudFlodlerDomains=" + treeCloudFlodlerDomains +
+                ", treeCloudFlodlerDomains=" + children +
                 '}';
     }
 }

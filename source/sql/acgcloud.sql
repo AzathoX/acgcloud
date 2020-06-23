@@ -66,7 +66,7 @@ create table if not exists tb_cloud_flodler
   hash_name char(255) not null unique,
   vp_size double(5,2) default 0.00,
   /**业务字段end**/
-  remark   varchar(255) null,
+  uploading boolean default false,
   remark1  varchar(255) null,
   remark2  varchar(255) null,
   is_del bigint not null default 0,

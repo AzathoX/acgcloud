@@ -3,13 +3,60 @@ package org.nrocn.lib.utils;
 import org.nrocn.lib.baseobj.Directory;
 import org.nrocn.lib.baseobj.RelativeFileObj;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseFileUtils {
 
+    private static final Integer BUFFER_SIZE = 1024;
+
+    /**
+     * 判断文件是否存在 存在返回文件
+     * @param path 路径
+     * @return 文件
+     */
+    public final static File find(String path){
+        assert  path != null && path.length() > 0 : "路径不合法";
+        File file  = new File(path);
+        return  find(file);
+    }
+
+    public final static File find(File file){
+        if(!file.exists()){
+            return null;
+        }
+        return  file;
+    }
+
+
+    /**
+     * 创建文件夹，当路径不存在的适合可以创建路径
+     * @param path
+     * @return
+     */
+    public final static File mkdir(String path){
+        assert  path != null && path.length() > 0 : "路径不合法";
+        //按照/拆成数组
+        // C://test = C:/test
+        path =  path.replace("//","/");
+        // /test
+        String[] fileArray = path.split("/");
+        //创建文件
+        String basePath = "/";
+        File file = null;
+        for (String fileName : fileArray) {
+            if(fileName.length() == 0){
+                continue;
+            }
+            basePath += ("/" + fileName);
+            file = new File(basePath);
+            if(!file.exists()){
+                file.mkdir();
+            }
+        }
+        return file;
+    }
 
     /**
      * 返回文件后缀
@@ -105,6 +152,42 @@ public abstract class BaseFileUtils {
             throw new FileNotFoundException("文件不存在");
         }
         tree(file,filelist);
+    }
+
+
+
+    public final static long cp(String source,String target){
+        return cp(source,target,BUFFER_SIZE);
+    }
+
+    public final static long cp(File source,File target){
+        return cp(source,target,BUFFER_SIZE);
+    }
+
+
+    //复制文件
+    public final static long cp(String source,String target,Integer buffreSize)  {
+        try {
+            BufferedInputStream sourceIO = new BufferedInputStream(new FileInputStream(source));
+            BufferedOutputStream targetIO = new BufferedOutputStream(new FileOutputStream(target));
+            return BaseIOUtils.copy(sourceIO, targetIO, buffreSize);
+        }catch (FileNotFoundException e){
+            System.out.println("文件为空");
+        }
+        return 0L;
+    }
+
+
+    //复制文件
+    public final static long cp(File source,File target,Integer bufferSize) {
+        try{
+            BufferedInputStream sourceIO = new BufferedInputStream(new FileInputStream(source));
+            BufferedOutputStream targetIO = new BufferedOutputStream(new FileOutputStream(target));
+            return  BaseIOUtils.copy(sourceIO,targetIO,bufferSize);
+        }catch (FileNotFoundException e){
+            System.out.println("文件为空");
+        }
+        return 0L;
     }
 
 

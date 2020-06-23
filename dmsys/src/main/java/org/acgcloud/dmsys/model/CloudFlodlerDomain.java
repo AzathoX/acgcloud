@@ -1,14 +1,14 @@
 package org.acgcloud.dmsys.model;
 
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @TableName(value = "tb_cloud_flodler")
@@ -46,8 +46,8 @@ public class CloudFlodlerDomain implements Serializable {
     @TableField(value = "logic_path")
     private String logicPath;
 
-    @TableField(value = "remark")
-    private String remark;
+    @TableField(value = "uploading")
+    private Boolean uploading;
 
     @TableField(value = "remark1")
     private String remark1;
@@ -88,7 +88,7 @@ public class CloudFlodlerDomain implements Serializable {
 
     public static final String COL_VP_SIZE = "vp_size";
 
-    public static final String COL_REMARK = "remark";
+    public static final String COL_UPLOADING = "uploading";
 
     public static final String COL_REMARK1 = "remark1";
 

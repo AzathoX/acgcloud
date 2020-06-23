@@ -1,0 +1,27 @@
+version: '3'
+services:
+  filesys:
+    container_name: filesys
+    image: filesys:vcloud
+    ports:
+      - 8089:8080
+  account:
+    container_name: account
+    image: account:vcloud
+    ports:
+      - 8088:8088
+  optrxsys:
+    container_name: optrxsys
+    image: optrxsys:vcloud
+    ports:
+      - 8086:8080
+  dmsys:
+    container_name: dmsys
+    image: dmsys:vcloud
+    ports:
+      - 8081:8081
+  web-app:
+    container_name: web-app
+    image: web-app:vcloud
+    ports:
+      - 8080:8080

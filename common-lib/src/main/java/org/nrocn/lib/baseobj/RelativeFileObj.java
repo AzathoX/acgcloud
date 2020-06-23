@@ -1,9 +1,5 @@
 package org.nrocn.lib.baseobj;
 
-import org.nrocn.lib.utils.BaseFileUtils;
-
-import java.io.File;
-
 public class RelativeFileObj {
 
 
