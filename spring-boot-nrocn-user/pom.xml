@@ -27,7 +27,7 @@
 		<fastjson.version>1.2.68</fastjson.version>
 		<nroc.common.version>1.0-DEV</nroc.common.version>
 		<common.lang3.version>3.10</common.lang3.version>
-		<springboot.version>2.2.7.RELEASE</springboot.version>
+		<springboot.version>2.5.12</springboot.version>
 		<connectionj.version>8.0.20</connectionj.version>
 		<mybatisplus.version>3.3.1</mybatisplus.version>
 		<mybatis.version>2.1.2</mybatis.version>
